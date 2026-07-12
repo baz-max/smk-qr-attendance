@@ -105,7 +105,6 @@
 }
 
 
-
 .gear-icon{
     font-size:18px;
     color:#2563eb;
@@ -123,156 +122,6 @@
     font-weight:700;
     font-size:14px;
 }
-
-/* ================= DARK MODE ================= */
-body.dark-mode{
-    background:#0f172a;
-    color:#e5e7eb;
-}
-
-body.dark-mode .navbar-custom{
-    background:#020617;
-    border-bottom:1px solid #1e293b;
-}
-
-body.dark-mode .brand-text{
-    color:#e5e7eb;
-}
-
-body.dark-mode .card{
-    background:#020617;
-    color:#e5e7eb;
-    border:1px solid #1e293b;
-}
-
-body.dark-mode .user-panel{
-    background:rgba(2,6,23,0.95);
-    color:#e5e7eb;
-}
-
-body.dark-mode .dropdown-item:hover{
-    background:#1e293b;
-}
-
-body.dark-mode .user-btn{
-    background:#020617;
-}
-
-body.dark-mode .user-btn:hover{
-    background:#1e293b;
-}
-
-body.dark-mode .form-control{
-    background:#020617;
-    border:1px solid #1e293b;
-    color:#e5e7eb;
-}
-
-body.dark-mode .form-control::placeholder{
-    color:#94a3b8;
-}
-
-body.dark-mode .btn-outline-danger{
-    border-color:#ef4444;
-    color:#ef4444;
-}
-
-/* ===== UNIVERSAL TEXT ===== */
-body.dark-mode .text-dark{
-    color:#e5e7eb !important;
-}
-
-body.dark-mode .text-muted{
-    color:#94a3b8 !important;
-}
-
-/* ===== UNIVERSAL BACKGROUND ===== */
-body.dark-mode .bg-white,
-body.dark-mode .bg-light{
-    background:#020617 !important;
-    color:#e5e7eb !important;
-}
-
-/* ===== BORDER ===== */
-body.dark-mode .border,
-body.dark-mode .border-top,
-body.dark-mode .border-bottom,
-body.dark-mode .border-start,
-body.dark-mode .border-end{
-    border-color:#1e293b !important;
-}
-
-/* ===== TABLE ===== */
-body.dark-mode table{
-    color:#e5e7eb;
-}
-
-body.dark-mode thead{
-    background:#020617;
-}
-
-body.dark-mode tbody tr{
-    border-color:#1e293b;
-}
-
-/* ===== MODAL ===== */
-body.dark-mode .modal-content{
-    background:#020617;
-    color:#e5e7eb;
-    border:1px solid #1e293b;
-}
-
-/* ===== DROPDOWN MENU (BOOTSTRAP DEFAULT) ===== */
-body.dark-mode .dropdown-menu{
-    background:#020617;
-    color:#e5e7eb;
-    border:1px solid #1e293b;
-}
-
-/* ===== LIST GROUP ===== */
-body.dark-mode .list-group-item{
-    background:#020617;
-    color:#e5e7eb;
-    border-color:#1e293b;
-}
-
-/* ===== BUTTON LIGHT ===== */
-body.dark-mode .btn-light{
-    background:#020617;
-    color:#e5e7eb;
-    border:1px solid #1e293b;
-}
-
-/* ===== PROGRESS BAR ===== */
-body.dark-mode .progress{
-    background:#020617;
-}
-
-body.dark-mode .progress-bar{
-    background:#22c55e;
-}
-
-/* ===== FORM SELECT ===== */
-body.dark-mode .form-select{
-    background:#020617;
-    border:1px solid #1e293b;
-    color:#e5e7eb;
-}
-
-/* ===== SCROLLBAR ===== */
-body.dark-mode ::-webkit-scrollbar{
-    width:8px;
-}
-body.dark-mode ::-webkit-scrollbar-track{
-    background:#020617;
-}
-body.dark-mode ::-webkit-scrollbar-thumb{
-    background:#1e293b;
-    border-radius:10px;
-}
-
-
-
     </style>
 </head>
 <body>
@@ -366,37 +215,21 @@ body.dark-mode ::-webkit-scrollbar-thumb{
 const userBtn = document.getElementById('userMenuBtn');
 const userPanel = document.getElementById('userPanel');
 
-userBtn.addEventListener('click', function(e){
-    e.stopPropagation();
-    userPanel.style.display =
-        userPanel.style.display === 'block' ? 'none' : 'block';
-});
+if (userBtn && userPanel) {
+    userBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        userPanel.style.display =
+            userPanel.style.display === 'block' ? 'none' : 'block';
+    });
 
-document.addEventListener('click', function(){
-    userPanel.style.display = 'none';
-});
-
-const darkToggle = document.getElementById('darkModeToggle');
-
-// load preferensi saat page dibuka
-if(localStorage.getItem('darkMode') === 'on'){
-    document.body.classList.add('dark-mode');
-    darkToggle.checked = true;
+    document.addEventListener('click', function(){
+        userPanel.style.display = 'none';
+    });
 }
-
-// saat toggle diklik
-darkToggle.addEventListener('change', function(){
-    if(this.checked){
-        document.body.classList.add('dark-mode');
-        localStorage.setItem('darkMode','on');
-    }else{
-        document.body.classList.remove('dark-mode');
-        localStorage.setItem('darkMode','off');
-    }
-});
 
 </script>
 
+@stack('scripts')
 
 </body>
 </html>

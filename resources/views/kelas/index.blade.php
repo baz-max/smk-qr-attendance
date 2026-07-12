@@ -143,6 +143,9 @@
 
 
 
+@endsection
+
+@push('scripts')
 <script>
 let kelasModal;
 const kelasModalEl = document.getElementById('kelasModal');
@@ -151,13 +154,11 @@ const kelasModalEl = document.getElementById('kelasModal');
 if (kelasModalEl) {
   kelasModal = new bootstrap.Modal(kelasModalEl);
 
-  // RESET setiap modal ditutup (INI YANG NGEFIX NEMPEL)
   kelasModalEl.addEventListener('hidden.bs.modal', function () {
     const form = document.getElementById('kelasForm');
     form.reset();
 
-    // balik ke mode TAMBAH
-    form.action = `/kelas`;
+    form.action = '/kelas';
     document.getElementById('methodField').value = 'POST';
     document.getElementById('kelasModalLabel').innerText = 'Tambah Kelas';
   });
@@ -166,12 +167,10 @@ if (kelasModalEl) {
 function openCreate() {
   const form = document.getElementById('kelasForm');
 
-  // paksa mode tambah
-  form.action = `/kelas`;
+  form.action = '/kelas';
   document.getElementById('methodField').value = 'POST';
   document.getElementById('kelasModalLabel').innerText = 'Tambah Kelas';
 
-  // clear input
   document.querySelector('[name=nama_kelas]').value = '';
   document.querySelector('[name=tingkat]').value = '10';
 
@@ -181,8 +180,7 @@ function openCreate() {
 function openEdit(id, nama, tingkat) {
   const form = document.getElementById('kelasForm');
 
-  // set mode edit
-  form.action = `/kelas/${id}`;
+  form.action = '/kelas/' + id;
   document.getElementById('methodField').value = 'PUT';
   document.getElementById('kelasModalLabel').innerText = 'Edit Kelas';
 
@@ -191,7 +189,5 @@ function openEdit(id, nama, tingkat) {
 
   kelasModal.show();
 }
-
 </script>
-
-@endsection
+@endpush
